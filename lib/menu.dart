@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportofolio_mobile/widgets/pulse_item_card.dart';
 
 // Model tombol menu dengan properti warna unik
 class ItemHomepage {
@@ -173,7 +174,7 @@ class MyHomePage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 children: items.map((ItemHomepage item) {
-                  return ItemCard(item);
+                    return PulseItemCard(item);
                 }).toList(),
               ),
             ],

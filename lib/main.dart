@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyPortfolio',
+      debugShowCheckedModeBanner: false, // Menyembunyikan banner teks "DEBUG" di sudut kanan atas layar
       theme: ThemeData(
         // Tema utama bernuansa Pink Espresso
         colorScheme: ColorScheme.fromSeed(
