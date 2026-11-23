@@ -83,3 +83,66 @@ Analisis Kritis Keterbatasan AI & Perbaikan Manual:
    AI hanya memanggil `showSnackBar()` tanpa membersihkan antrean sebelumnya sehingga pesan menumpuk saat tombol ditekan cepat. Saya menambahkan `..hideCurrentSnackBar()` agar umpan balik langsung berganti seketika.
 5. Risiko Overflow Layout pada Layar Kecil (Responsive Constraint):
    AI awalnya menggunakan ukuran pixel statis pada `InfoCard`. Saya menggantinya dengan kalkulasi dinamis `MediaQuery.of(context).size.width / 3.5` agar layout kartu proporsional dan bebas dari render overflow.
+
+### Tugas 8
+
+1. Jelaskan perbedaan antara Navigator.push(), Navigator.pushReplacement(), dan Navigator.pop(). Metode apa yang digunakan untuk membuka formulir dari kartu aksi? Jelaskan juga bagaimana opsi Home di drawer membawa pengguna kembali ke halaman utama.
+
+Perbedaan ketiganya terletak pada bagaimana Flutter mengelola tumpukan halaman (navigation stack):
+ `Navigator.push()`: Menambahkan halaman baru ke tumpukan paling atas tanpa menghapus halaman sebelumnya. Halaman lama tetap tersimpan di bawahnya, sehingga pengguna bisa kembali ke halaman lama menggunakan tombol back sistem atau panah di AppBar.
+ `Navigator.pushReplacement()`: Mengganti halaman aktif saat ini dengan halaman baru. Halaman sebelumnya langsung ditutup dan dihapus dari memori, sehingga pengguna tidak bisa kembali ke halaman lama tersebut dengan tombol back.
+ `Navigator.pop()`: Mengeluarkan atau membuang halaman paling atas dari tumpukan, sehingga layar kembali menampilkan halaman yang berada tepat di bawahnya (biasanya dipakai untuk menutup dialog atau kembali dari layar saat ini).
+
+Metode yang digunakan untuk membuka formulir dari kartu aksi di beranda adalah `Navigator.push()`. Alasan pemilihannya adalah agar riwayat halaman utama (`MyHomePage`) tetap ada di dalam stack. Dengan begitu, saat pengguna selesai atau batal mengisi form, mereka cukup menekan tombol panah kembali pada AppBar untuk langsung kembali ke beranda.
+
+Sementara itu, opsi Home pada drawer membawa pengguna kembali ke halaman utama menggunakan `Navigator.pushReplacement()`. Hal ini sengaja diterapkan agar halaman formulir yang sedang terbuka digantikan langsung oleh halaman beranda. Jika menggunakan `push` biasa, tumpukan navigasi akan menumpuk halaman beranda berkali-kali setiap kali pengguna membuka menu Home dari drawer, yang berisiko memboroskan memori dan membuat pengguna harus menekan tombol back berkali-kali hanya untuk keluar dari aplikasi.
+
+
+2. Bagaimana susunan Scaffold, AppBar, dan Drawer membantu menjaga struktur halaman tetap konsisten? Berikan satu contoh penggunaan warna tema portofolio di lebih dari satu halaman.
+
+Susunan ketiganya menjaga konsistensi tampilan melalui pembagian peran tata letak standar Material Design:
+ `Scaffold` menjadi fondasi seragam di setiap halaman yang menyiapkan slot baku untuk header, kanvas isi (body), dan panel samping (drawer).
+ `AppBar` memastikan bagian atas setiap layar memiliki ketinggian, penempatan judul, dan tombol akses drawer yang posisinya selalu seragam di mata pengguna.
+ `Drawer` (`LeftDrawer`) dibuat sebagai widget modular tersendiri yang dipasang pada setiap `Scaffold` (baik di `MyHomePage`, `ProjectFormPage`, `ExperienceFormPage`, maupun `ExperienceListPage`). Karena menggunakan satu komponen yang sama, menu navigasi samping yang dilihat pengguna selalu identik di halaman mana pun mereka berada.
+
+Contoh penerapan warna tema portofolio (Pink Espresso) di lebih dari satu halaman:
+Warna primer espresso gelap `const Color(0xFF392529)` digunakan secara konsisten sebagai warna dasar `AppBar` dan header drawer di `menu.dart`, `project_form.dart`, `experience_form.dart`, dan `experience_list.dart`. Warna ini juga konsisten digunakan sebagai warna latar belakang tombol simpan (`ElevatedButton`) di kedua halaman formulir, serta warna teks judul utama. Dipadukan dengan warna krem lembut `const Color(0xFFF1DFD3)` sebagai warna dasar latar aplikasi dan teks header, identitas visual portofolio tetap harmonis di seluruh layar.
+
+
+3. Mengapa tata letak tersebut dipilih untuk formulir? Jelaskan peran widget pengatur jarak dan widget penggulir ketika ruang layar terbatas.
+
+Tata letak formulir dirancang menggunakan `Column` di dalam `Form` dan dibungkus oleh `SingleChildScrollView`. Struktur vertikal dari atas ke bawah ini dipilih karena proses pengisian form memang bersifat sekuensial (dimulai dari posisi, kategori, tanggal mulai, status aktif, tautan URL, hingga deskripsi dan tombol simpan). Alur vertikal ini alami bagi alur membaca pengguna dan membantu memusatkan fokus pada satu field input sebelum berpindah ke field berikutnya.
+
+ Peran widget pengatur jarak (`Padding` dan `SizedBox`): Memberikan ruang kosong (whitespace) yang proporsional antar-elemen input. Tanpa pengaturan jarak ini, kolom-kolom input akan menempel terlalu rapat sehingga antarmuka terlihat sempit, sulit dibaca, dan memperbesar risiko salah sentuh (misclick) pada layar sentuh.
+ Peran widget penggulir (`SingleChildScrollView`): Menjadi penyelamat saat ruang layar terbatas, terutama ketika papan ketik virtual (soft keyboard) muncul dan memotong lebih dari setengah tinggi layar. Tanpa widget ini, sistem Flutter akan memicu overflow error (`RenderFlex overflowed by ... pixels`) dan tombol simpan akan tertutup oleh keyboard sehingga tidak bisa ditekan.
+
+
+4. Apa peran GlobalKey<FormState>, validator, dan validate() saat tombol Simpan ditekan? Berikan satu contoh nilai yang ditolak oleh validasi dan jelaskan mengapa memilih jenis input atau papan ketik saja belum cukup.
+
+ `GlobalKey<FormState>`: Berperan sebagai pengenal unik yang memberi akses langsung ke state internal dari widget `Form` dari luar widget tree form itu sendiri.
+ `validator`: Fungsi pemeriksaan logika pada masing-masing field (`TextFormField`) yang bertugas mengecek apakah isi teks memenuhi aturan yang ditentukan (misalnya tidak boleh kosong atau panjang karakter minimum). Fungsi ini mengembalikan string pesan galat jika salah, atau `null` jika lolos.
+ `validate()`: Metode yang dipanggil melalui `_formKey.currentState!.validate()`. Saat tombol Simpan ditekan, metode ini secara serentak menjalankan fungsi `validator` pada seluruh field form. Jika ada satu saja field yang tidak valid, proses simpan dibatalkan dan teks pesan galat otomatis muncul di bawah kolom yang bermasalah.
+
+Contoh nilai yang ditolak oleh validasi pada form pengalaman adalah ketika pengguna hanya menekan spasi berulang kali (misalnya `"   "`). Berkat fungsi `value.trim().isEmpty`, input tersebut tetap terdeteksi kosong dan ditolak dengan pesan: "Posisi/peran pengalaman tidak boleh kosong!".
+
+Memilih jenis input atau papan ketik saja (seperti `keyboardType: TextInputType.url` atau `TextInputType.number`) belum cukup karena keyboard type hanya sekadar saran tampilan papan ketik (layout hint) bagi kenyamanan pengguna. Fitur tersebut tidak mengunci atau menyaring input secara mutlak: pengguna masih bisa melakukan operasi paste (salin-tempel) karakter sembarang dari clipboard, membiarkan kolom kosong, atau menghapus teks hingga menyisakan spasi saja. Oleh karena itu, validasi logika programatis melalui `validator` di sisi kode tetap wajib ada demi menjaga kebersihan data.
+
+## AI Disclosure & Analisis Kritis Keterbatasan AI
+
+Dalam pengerjaan Tugas 8 ini, saya berdiskusi dengan AI sebagai asisten teknis untuk merancang struktur formulir, mengintegrasikan fitur kalender, serta menyusun kerangka penjelasan konsep navigasi Flutter.
+
+Tools yang Digunakan: ChatGPT
+
+Bagian yang Dibantu AI:
+1. Memberikan referensi contoh penulisan fungsi `showDatePicker` dan integrasi widget `SwitchListTile`.
+2. Membantu memberikan poin-poin komparasi teknis antara metode navigasi `Navigator.push`, `pushReplacement`, dan `pop`.
+
+Analisis Kritis Keterbatasan AI & Perbaikan Manual:
+1. Celah Validasi Whitespace:
+   AI awalnya hanya menyarankan pemeriksaan dasar `value.isEmpty`. Celah ini membuat pengguna masih bisa mengelabui form hanya dengan menekan tombol spasi. Saya memperbaikinya secara manual dengan menerapkan `value.trim().isEmpty` dan batasan panjang karakter `value.trim().length < 3` agar form tidak menerima input kosong bertopeng spasi.
+2. Kekeliruan Pemilihan Metode Navigasi Drawer:
+   AI sempat menyarankan pemakaian `Navigator.pushReplacement` pada seluruh menu drawer. Praktik ini salah karena menghilangkan tombol back pada halaman formulir sehingga pengguna tidak bisa kembali ke halaman sebelumnya. Saya memperbaikinya dengan hanya menerapkan `pushReplacement` untuk tombol Home, sedangkan menu formulir dan daftar list menggunakan `Navigator.push`.
+3. Peringatan Deprecated Member pada Flutter Versi Baru:
+   AI menyarankan parameter `value` pada `DropdownButtonFormField` dan `activeColor` pada `SwitchListTile`. Saat dicek dengan `flutter analyze`, kedua properti tersebut memunculkan peringatan deprecation. Saya memperbaikinya secara manual menjadi `initialValue` dan `activeThumbColor` sesuai standar API Flutter terbaru sehingga hasil analisis kode benar-benar bersih (0 issues).
+4. Penyelarasan Warna DatePicker:
+   Secara default, dialog `showDatePicker` yang disarankan AI menggunakan warna biru bawaan Material yang bertabrakan dengan tema visual portofolio. Saya menambahkan konfigurasi `Theme` lokal di dalam builder kalender agar warnanya selaras dengan palet Pink Espresso (`#392529` dan `#F1DFD3`).
