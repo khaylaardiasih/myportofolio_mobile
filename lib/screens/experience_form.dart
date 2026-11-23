@@ -127,7 +127,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: DropdownButtonFormField<String>(
-                  value: _category,
+                  initialValue: _category,
                   decoration: InputDecoration(
                     labelText: "Kategori Pengalaman",
                     prefixIcon: const Icon(Icons.category_outlined, color: Color(0xFF392529)),
@@ -187,7 +187,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                     style: GoogleFonts.jost(fontWeight: FontWeight.w500, color: const Color(0xFF392529)),
                   ),
                   value: _isOngoing,
-                  activeColor: const Color(0xFF855B60),
+                  activeThumbColor: const Color(0xFF855B60),
                   onChanged: (bool val) {
                     setState(() {
                       _isOngoing = val;
