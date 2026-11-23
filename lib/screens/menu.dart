@@ -65,13 +65,15 @@ class MyHomePage extends StatelessWidget {
   final String nama = 'Khayla Syafira Ardiasih';
   final String kelas = 'PBP A';
 
-  // list tombol menu dengan warna masing-masing
+  // List tombol menu aksi di halaman beranda dengan ikon dan warna tema
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder_open, const Color(0xFF855B60)),
     ItemHomepage("Tambah Proyek", Icons.add_circle_outline, const Color(0xFFD9A6A8)),
+    ItemHomepage("Tambah Pengalaman", Icons.work_outline, const Color(0xFF855B60)), // Menu Tugas 8
+    ItemHomepage("Lihat Pengalaman", Icons.list_alt_outlined, const Color(0xFFD9A6A8)), // kreativitas tugas 8
     ItemHomepage("Logout", Icons.logout, const Color(0xFF392529)),
   ];
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

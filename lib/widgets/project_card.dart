@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
+import 'package:myportofolio_mobile/screens/experience_form.dart';
+import 'package:myportofolio_mobile/screens/experience_list.dart';
 
 // widget kartu tombol menu
 class ItemCard extends StatelessWidget {
@@ -36,6 +38,26 @@ class ItemCard extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => const ProjectFormPage(),
+              ),
+            );
+          }
+          
+          // Navigasi ke form tambah pengalaman (Tugas 8)
+          if (item.name == "Tambah Pengalaman") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ExperienceFormPage(),
+              ),
+            );
+          }
+
+          // kreativitas tugas 8: Navigasi ke halaman daftar pengalaman
+          if (item.name == "Lihat Pengalaman") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ExperienceListPage(),
               ),
             );
           }
@@ -151,6 +173,26 @@ class _PulseItemCardState extends State<PulseItemCard> {
         context,
         MaterialPageRoute(
           builder: (context) => const ProjectFormPage(),
+        ),
+      );
+    }
+    
+    // Navigasi ke form tambah pengalaman (Tugas 8)
+    if (widget.item.name == "Tambah Pengalaman") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ExperienceFormPage(),
+        ),
+      );
+    }
+
+    // kreativitas tugas 8: Navigasi ke halaman daftar pengalaman
+    if (widget.item.name == "Lihat Pengalaman") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ExperienceListPage(),
         ),
       );
     }

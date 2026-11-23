@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myportofolio_mobile/screens/experience_form.dart';
+import 'package:myportofolio_mobile/screens/experience_list.dart';
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 
-// drawer navigasi samping
+// Drawer navigasi samping untuk memudahkan perpindahan antar-halaman aplikasi
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
 
@@ -12,7 +14,7 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          // bagian header drawer
+          // Header drawer dengan visual tema portofolio
           DrawerHeader(
             decoration: const BoxDecoration(
               color: Color(0xFF392529),
@@ -43,7 +45,7 @@ class LeftDrawer extends StatelessWidget {
             ),
           ),
 
-          // navigasi ke home
+          // 1. Menu Navigasi ke Halaman Utama (Home)
           ListTile(
             leading: const Icon(
               Icons.home_outlined,
@@ -66,14 +68,14 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
 
-          // navigasi ke form add project
+          // 2. Menu Navigasi ke Tambah Proyek (Tutorial 09)
           ListTile(
             leading: const Icon(
-              Icons.add_circle_outline,
+              Icons.post_add_outlined,
               color: Color(0xFF392529),
             ),
             title: Text(
-              'Add Project',
+              'Tambah Proyek',
               style: GoogleFonts.jost(
                 fontWeight: FontWeight.w500,
                 color: const Color(0xFF392529),
@@ -84,6 +86,52 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ProjectFormPage(),
+                ),
+              );
+            },
+          ),
+
+          // 3. Menu Navigasi ke Tambah Pengalaman (Tugas 8)
+          ListTile(
+            leading: const Icon(
+              Icons.work_outline,
+              color: Color(0xFF392529),
+            ),
+            title: Text(
+              'Tambah Pengalaman',
+              style: GoogleFonts.jost(
+                fontWeight: FontWeight.w500,
+                color: const Color(0xFF392529),
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ExperienceFormPage(),
+                ),
+              );
+            },
+          ),
+
+          // kreativitas tugas 8: Menu navigasi drawer untuk membuka halaman daftar riwayat pengalaman
+          ListTile(
+            leading: const Icon(
+              Icons.list_alt_outlined,
+              color: Color(0xFF392529),
+            ),
+            title: Text(
+              'Lihat Pengalaman',
+              style: GoogleFonts.jost(
+                fontWeight: FontWeight.w500,
+                color: const Color(0xFF392529),
+              ),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ExperienceListPage(),
                 ),
               );
             },
