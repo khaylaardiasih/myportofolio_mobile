@@ -63,7 +63,10 @@ class ExperienceListPage extends StatelessWidget {
                     const SizedBox(height: 20),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.add),
-                      label: Text('Tambah Pengalaman Sekarang', style: GoogleFonts.jost()),
+                      label: Text(
+                        'Tambah Pengalaman Sekarang',
+                        style: GoogleFonts.jost(),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF392529),
                         foregroundColor: const Color(0xFFF1DFD3),
@@ -93,7 +96,10 @@ class ExperienceListPage extends StatelessWidget {
                   color: const Color(0xFFF1DFD3),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14.0),
-                    side: const BorderSide(color: Color(0xFFD9A6A8), width: 1.2),
+                    side: const BorderSide(
+                      color: Color(0xFFD9A6A8),
+                      width: 1.2,
+                    ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -116,9 +122,14 @@ class ExperienceListPage extends StatelessWidget {
                             ),
                             // Badge status: aktif / selesai
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 4,
+                              ),
                               decoration: BoxDecoration(
-                                color: item.isOngoing ? const Color(0xFF855B60) : Colors.grey[600],
+                                color: item.isOngoing
+                                    ? const Color(0xFF855B60)
+                                    : Colors.grey[600],
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Text(
@@ -137,9 +148,13 @@ class ExperienceListPage extends StatelessWidget {
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 2,
+                              ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFD9A6A8).withValues(alpha: 0.4),
+                                color: const Color(0xFFD9A6A8)
+                                    .withValues(alpha: 0.4),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(

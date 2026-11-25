@@ -24,9 +24,7 @@ class InfoCard extends StatelessWidget {
     return Card(
       elevation: 1.5,
       color: const Color(0xFFD9A6A8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
         width: MediaQuery.of(context).size.width / 3.5,
         padding: const EdgeInsets.all(16.0),
@@ -68,12 +66,24 @@ class MyHomePage extends StatelessWidget {
   // List tombol menu aksi di halaman beranda dengan ikon dan warna tema
   final List<ItemHomepage> items = [
     ItemHomepage("Lihat Proyek", Icons.folder_open, const Color(0xFF855B60)),
-    ItemHomepage("Tambah Proyek", Icons.add_circle_outline, const Color(0xFFD9A6A8)),
-    ItemHomepage("Tambah Pengalaman", Icons.work_outline, const Color(0xFF855B60)), // Menu Tugas 8
-    ItemHomepage("Lihat Pengalaman", Icons.list_alt_outlined, const Color(0xFFD9A6A8)), // kreativitas tugas 8
+    ItemHomepage(
+      "Tambah Proyek",
+      Icons.add_circle_outline,
+      const Color(0xFFD9A6A8),
+    ),
+    ItemHomepage(
+      "Tambah Pengalaman",
+      Icons.work_outline,
+      const Color(0xFF855B60),
+    ), // Menu Tugas 8
+    ItemHomepage(
+      "Lihat Pengalaman",
+      Icons.list_alt_outlined,
+      const Color(0xFFD9A6A8),
+    ), // kreativitas tugas 8
     ItemHomepage("Logout", Icons.logout, const Color(0xFF392529)),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

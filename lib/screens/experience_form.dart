@@ -96,12 +96,22 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   decoration: InputDecoration(
                     labelText: "Posisi / Peran Pengalaman",
                     hintText: "Contoh: Frontend Developer Intern",
-                    prefixIcon: const Icon(Icons.work_outline, color: Color(0xFF392529)),
-                    labelStyle: GoogleFonts.jost(color: const Color(0xFF392529)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                    prefixIcon: const Icon(
+                      Icons.work_outline,
+                      color: Color(0xFF392529),
+                    ),
+                    labelStyle: GoogleFonts.jost(
+                      color: const Color(0xFF392529),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Color(0xFF855B60), width: 1.8),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF855B60),
+                        width: 1.8,
+                      ),
                     ),
                   ),
                   style: GoogleFonts.jost(),
@@ -130,12 +140,22 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   initialValue: _category,
                   decoration: InputDecoration(
                     labelText: "Kategori Pengalaman",
-                    prefixIcon: const Icon(Icons.category_outlined, color: Color(0xFF392529)),
-                    labelStyle: GoogleFonts.jost(color: const Color(0xFF392529)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                    prefixIcon: const Icon(
+                      Icons.category_outlined,
+                      color: Color(0xFF392529),
+                    ),
+                    labelStyle: GoogleFonts.jost(
+                      color: const Color(0xFF392529),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Color(0xFF855B60), width: 1.8),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF855B60),
+                        width: 1.8,
+                      ),
                     ),
                   ),
                   items: _categories.map((String cat) {
@@ -160,17 +180,28 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   child: InputDecorator(
                     decoration: InputDecoration(
                       labelText: "Tanggal Mulai",
-                      prefixIcon: const Icon(Icons.calendar_today_outlined, color: Color(0xFF392529)),
-                      labelStyle: GoogleFonts.jost(color: const Color(0xFF392529)),
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                      prefixIcon: const Icon(
+                        Icons.calendar_today_outlined,
+                        color: Color(0xFF392529),
+                      ),
+                      labelStyle: GoogleFonts.jost(
+                        color: const Color(0xFF392529),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                     ),
                     child: Text(
                       _startedAt == null
                           ? "Pilih tanggal mulai..."
                           : "${_startedAt!.day.toString().padLeft(2, '0')}/${_startedAt!.month.toString().padLeft(2, '0')}/${_startedAt!.year}",
                       style: GoogleFonts.jost(
-                        color: _startedAt == null ? Colors.grey[600] : const Color(0xFF392529),
-                        fontWeight: _startedAt == null ? FontWeight.normal : FontWeight.w500,
+                        color: _startedAt == null
+                            ? Colors.grey[600]
+                            : const Color(0xFF392529),
+                        fontWeight: _startedAt == null
+                            ? FontWeight.normal
+                            : FontWeight.w500,
                       ),
                     ),
                   ),
@@ -184,7 +215,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   contentPadding: EdgeInsets.zero,
                   title: Text(
                     "Masih aktif / berlangsung sampai sekarang",
-                    style: GoogleFonts.jost(fontWeight: FontWeight.w500, color: const Color(0xFF392529)),
+                    style: GoogleFonts.jost(
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF392529),
+                    ),
                   ),
                   value: _isOngoing,
                   activeThumbColor: const Color(0xFF855B60),
@@ -203,12 +237,22 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   decoration: InputDecoration(
                     labelText: "URL Logo / Gambar Instansi (Opsional)",
                     hintText: "https://example.com/logo.png",
-                    prefixIcon: const Icon(Icons.image_outlined, color: Color(0xFF392529)),
-                    labelStyle: GoogleFonts.jost(color: const Color(0xFF392529)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                    prefixIcon: const Icon(
+                      Icons.image_outlined,
+                      color: Color(0xFF392529),
+                    ),
+                    labelStyle: GoogleFonts.jost(
+                      color: const Color(0xFF392529),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Color(0xFF855B60), width: 1.8),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF855B60),
+                        width: 1.8,
+                      ),
                     ),
                   ),
                   style: GoogleFonts.jost(),
@@ -240,13 +284,23 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                     alignLabelWithHint: true,
                     prefixIcon: const Padding(
                       padding: EdgeInsets.only(bottom: 55.0),
-                      child: Icon(Icons.description_outlined, color: Color(0xFF392529)),
+                      child: Icon(
+                        Icons.description_outlined,
+                        color: Color(0xFF392529),
+                      ),
                     ),
-                    labelStyle: GoogleFonts.jost(color: const Color(0xFF392529)),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+                    labelStyle: GoogleFonts.jost(
+                      color: const Color(0xFF392529),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: const BorderSide(color: Color(0xFF855B60), width: 1.8),
+                      borderSide: const BorderSide(
+                        color: Color(0xFF855B60),
+                        width: 1.8,
+                      ),
                     ),
                   ),
                   style: GoogleFonts.jost(),
@@ -275,11 +329,17 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   decoration: BoxDecoration(
                     color: const Color(0xFFD9A6A8).withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(12.0),
-                    border: Border.all(color: const Color(0xFF855B60), width: 1.2),
+                    border: Border.all(
+                      color: const Color(0xFF855B60),
+                      width: 1.2,
+                    ),
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.preview_outlined, color: Color(0xFF392529)),
+                      const Icon(
+                        Icons.preview_outlined,
+                        color: Color(0xFF392529),
+                      ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -296,7 +356,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                             const SizedBox(height: 2),
                             Text(
                               "Kategori: $_category • Status: ${_isOngoing ? "Sedang Berlangsung" : "Selesai"}",
-                              style: GoogleFonts.jost(fontSize: 12, color: const Color(0xFF392529)),
+                              style: GoogleFonts.jost(
+                                fontSize: 12,
+                                color: const Color(0xFF392529),
+                              ),
                             ),
                           ],
                         ),
@@ -323,7 +386,10 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF392529),
                     foregroundColor: const Color(0xFFF1DFD3),
-                    padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 14.0),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 36.0,
+                      vertical: 14.0,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -379,21 +445,38 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Text('Posisi: $_title', style: GoogleFonts.jost(fontWeight: FontWeight.w600)),
+                                  Text(
+                                    'Posisi: $_title',
+                                    style: GoogleFonts.jost(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                   const SizedBox(height: 6),
-                                  Text('Kategori: $_category', style: GoogleFonts.jost()),
+                                  Text(
+                                    'Kategori: $_category',
+                                    style: GoogleFonts.jost(),
+                                  ),
                                   const SizedBox(height: 6),
                                   Text(
                                     'Mulai: ${_startedAt!.day}/${_startedAt!.month}/${_startedAt!.year}',
                                     style: GoogleFonts.jost(),
                                   ),
                                   const SizedBox(height: 6),
-                                  Text('Status: ${_isOngoing ? "Sedang Berlangsung" : "Selesai"}', style: GoogleFonts.jost()),
+                                  Text(
+                                    'Status: ${_isOngoing ? "Sedang Berlangsung" : "Selesai"}',
+                                    style: GoogleFonts.jost(),
+                                  ),
                                   const SizedBox(height: 6),
-                                  Text('Deskripsi: $_description', style: GoogleFonts.jost()),
+                                  Text(
+                                    'Deskripsi: $_description',
+                                    style: GoogleFonts.jost(),
+                                  ),
                                   if (_thumbnailUrl.isNotEmpty) ...[
                                     const SizedBox(height: 6),
-                                    Text('URL Logo: $_thumbnailUrl', style: GoogleFonts.jost(fontSize: 12)),
+                                    Text(
+                                      'URL Logo: $_thumbnailUrl',
+                                      style: GoogleFonts.jost(fontSize: 12),
+                                    ),
                                   ],
                                 ],
                               ),
